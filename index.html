@@ -669,6 +669,21 @@
         ).padStart(2, "0");
       }, 1000);
 
+      // 🔖 Ambil nama tamu dari URL
+      const params = new URLSearchParams(window.location.search);
+      const guestName = params.get("to");
+    
+      if (guestName) {
+        // Temukan elemen tamu di cover
+        const tamuContainer = document.querySelector(".tamu .text");
+    
+        // Tambahkan nama tamu ke bawah teks Kepada Yth.
+        const guestLine = document.createElement("p");
+        guestLine.classList.add("guest-name");
+        guestLine.textContent = guestName;
+        tamuContainer.appendChild(guestLine);
+      }
+
         // Open invitation
         document.querySelector(".buka_undangan").addEventListener("click", () => {
           const cover = document.getElementById("cover");
