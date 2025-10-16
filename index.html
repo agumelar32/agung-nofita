@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
       property="og:image"
-      content="https://lisa-antoni.netlify.app/assets/img/link.png"
+      content="https://agumelar32.github.io/agung-nofita/assets/img/link.png"
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="The Wedding of Agung & Nofita" />
@@ -41,99 +41,6 @@
         transform: translateY(0);
       }
 
-      /* Bottom navigation mewah */
-      #bottomNav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        background: rgba(0, 0, 0, 0.25);
-        border-top-left-radius: 25px;
-        border-top-right-radius: 25px;
-        box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.3),
-          0 -4px 25px rgba(51, 203, 214, 0.3);
-        backdrop-filter: blur(15px);
-        z-index: 999;
-        padding: 10px 0;
-        overflow: hidden;
-      }
-
-            /* Daftar menu */
-      #bottomNav ul {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        gap: 35px;
-      }
-
-      #bottomNav ul li a {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: #ffffff;
-        font-size: 1.6rem;
-        transition: transform 0.3s ease, color 0.3s ease;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-      }
-
-      /* Lingkaran highlight */
-      #bottomNav ul li a::before {
-        content: "";
-        position: absolute;
-        top: 3px;
-        width: 50px;
-        height: 50px;
-        background: radial-gradient(
-          circle at center,
-          rgba(192, 240, 255, 0.6),
-          rgba(0, 0, 0, 0.4)
-        );
-        border-radius: 50%;
-        transform: scale(0);
-        transition: transform 0.4s ease;
-        z-index: -1;
-      }
-
-      /* Label teks */
-      #bottomNav ul li a span {
-        font-size: 0.75rem;
-        font-weight: 500;
-        margin-top: 4px;
-        transition: color 0.3s ease;
-      }
-
-      /* Hover / Aktif */
-      #bottomNav ul li a.active,
-      #bottomNav ul li a:hover {
-        color: #ffe6f0;
-        transform: scale(1.15);
-      }
-      #bottomNav ul li a.active::before,
-      #bottomNav ul li a:hover::before {
-        transform: scale(1);
-        box-shadow: 0 0 25px rgba(192, 240, 255, 0.8);
-      }
-      #bottomNav ul li a.active span,
-      #bottomNav ul li a:hover span {
-        color: #ffe6f0;
-      }
-
-      /* Efek Glow Pulse */
-      
-      @keyframes pulseGlow {
-        from {
-          text-shadow: 0 0 5px #000000, 0 0 10px #a9bbc6;
-        }
-        to {
-          text-shadow: 0 0 15px #fff, 0 0 25px #a9bbc6;
-        }
-      }
       /* Tombol Musik */
       .music-btn {
         position: fixed;
@@ -211,7 +118,6 @@
     <main id="mainContent" style="display: none">
       <!-- header -->
       <div id="header">
-        <img src="./assets/img/unnamed.png"
         <img src="./assets/img/bunga3.png" alt="Dekorasi bunga" />
         <p class="A">The Wedding Of</p>
         <div class="header_couple">
@@ -595,15 +501,14 @@
         </li>
         <li>
           <a href="#messages"
-            ><ion-icon name="chatbubble-ellipses-outline"></ion-icon
-            ><span>Wishes</span></a
+            ><ion-icon name="chatbubble-ellipses-outline"></ion-icon><span>Wishes</span></a
           >
         </li>
       </ul>
     </nav>
   
     <!--music-->
-    <audio id="bgMusic" src="agung-nofita/assets/music/Wedding.mp3" loop></audio>
+    <audio id="bgMusic" src="./assets/music/wedding.mp3" loop></audio>
     <!-- Tombol Musik -->
     <div id="musicControl" class="music-btn" style="display: none">
       <ion-icon name="pause-circle"></ion-icon>
@@ -672,23 +577,23 @@
       // 🔖 Ambil nama tamu dari URL
       const params = new URLSearchParams(window.location.search);
       const guestName = params.get("to");
-    
+
       if (guestName) {
-        // Temukan elemen tamu di cover
-        const tamuContainer = document.querySelector(".tamu .text");
-    
-        // Tambahkan nama tamu ke bawah teks Kepada Yth.
-        const guestLine = document.createElement("p");
-        guestLine.classList.add("guest-name");
-        guestLine.textContent = guestName;
-        tamuContainer.appendChild(guestLine);
+      // Temukan elemen tamu di cover
+      const tamuContainer = document.querySelector(".tamu .text");
+
+      // Tambahkan nama tamu ke bawah teks Kepada Yth.
+      const guestLine = document.createElement("p");
+      guestLine.classList.add("guest-name");
+      guestLine.textContent = guestName;
+      tamuContainer.appendChild(guestLine);
       }
 
-        // Open invitation
-        document.querySelector(".buka_undangan").addEventListener("click", () => {
-          const cover = document.getElementById("cover");
-          const main = document.getElementById("mainContent");
-          const bottomNav = document.getElementById("bottomNav");
+      // Open invitation
+      document.querySelector(".buka_undangan").addEventListener("click", () => {
+        const cover = document.getElementById("cover");
+        const main = document.getElementById("mainContent");
+        const bottomNav = document.getElementById("bottomNav");
 
           gsap.to(cover, {
             duration: 1,
@@ -719,37 +624,60 @@
         });
 
         // Smooth scroll + active nav highlight
-        const sections = document.querySelectorAll(
-          "main .section, #header, #cover"
-        );
-        const navLinks = document.querySelectorAll("#bottomNav ul li a");
-        window.addEventListener("scroll", () => {
-          let current = "";
-          sections.forEach((section) => {
-            const sectionTop = section.offsetTop - 150;
-            if (pageYOffset >= sectionTop) current = section.getAttribute("id");
-          });
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === "#" + current)
-              link.classList.add("active");
-          });
+  // Ambil semua section dan link navigasi
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("#bottomNav ul li a");
 
-        // fade-slide
-          sections.forEach((section) => {
-            const sectionTop = section.getBoundingClientRect().top;
-            if (sectionTop < window.innerHeight - 100)
-              section.classList.add("show");
-          });
-        });
-        navLinks.forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            target.scrollIntoView({ behavior: "smooth" });
-          });
-        });
+  // === Scroll spy untuk deteksi aktif berdasarkan posisi scroll ===
+  window.addEventListener("scroll", () => {
+    let current = "";
+    const scrollY = window.pageYOffset;
 
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 120; // sensitivitas area aktif
+      const sectionHeight = section.offsetHeight;
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight - 80) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    // fallback: kalau di paling atas, aktifkan Home
+    if (scrollY < 100) current = "home";
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === "#" + current) {
+        link.classList.add("active");
+      }
+    });
+  });
+
+  // === Klik event: scroll halus + highlight langsung aktif ===
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault(); // cegah lompat langsung
+      const targetId = link.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
+
+      // Hapus semua highlight dulu
+      navLinks.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
+
+      // Scroll halus ke section
+      if (targetSection) {
+        window.scrollTo({
+          top: targetSection.offsetTop - 80, // sedikit jarak biar pas
+          behavior: "smooth",
+        });
+      }
+
+      // Khusus Home, pastikan ke atas penuh
+      if (targetId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  });
         // Initialize swiper
         window.addEventListener("load", () => {
           new Swiper(".gallery-swiper", {
@@ -883,110 +811,109 @@
       });
     });
 
-// 🕊️ Realtime load ucapan (fitur lihat semua + sembunyikan)
-onValue(ref(db, "ucapan"), (snapshot) => {
-  const data = snapshot.val();
-  msgList.innerHTML = "";
+      // 🕊️ Realtime load ucapan (fitur lihat semua + sembunyikan)
+      onValue(ref(db, "ucapan"), (snapshot) => {
+        const data = snapshot.val();
+        msgList.innerHTML = "";
 
-  if (data) {
-    const allMessages = Object.values(data)
-      .sort((a, b) => new Date(b.time) - new Date(a.time)); // urut terbaru
+        if (data) {
+          const allMessages = Object.values(data)
+            .sort((a, b) => new Date(b.time) - new Date(a.time)); // urut terbaru
 
-    let showingAll = false; // status tampilan
-    const renderMessages = () => {
-      msgList.innerHTML = "";
+          let showingAll = false; // status tampilan
+          const renderMessages = () => {
+            msgList.innerHTML = "";
 
-      // kalau showingAll true → tampilkan 20, kalau false → tampilkan 5
-      const limit = showingAll ? 20 : 5;
-      const messages = allMessages.slice(0, limit);
+            // kalau showingAll true → tampilkan 20, kalau false → tampilkan 5
+            const limit = showingAll ? 20 : 5;
+            const messages = allMessages.slice(0, limit);
 
-      messages.forEach(({ name, message, time }) => {
-        const div = document.createElement("div");
-        div.classList.add("message-item");
+            messages.forEach(({ name, message, time }) => {
+              const div = document.createElement("div");
+              div.classList.add("message-item");
 
-        const localTime = new Date(time).toLocaleString("id-ID", {
-          dateStyle: "short",
-          timeStyle: "short",
-        });
+              const localTime = new Date(time).toLocaleString("id-ID", {
+                dateStyle: "short",
+                timeStyle: "short",
+              });
 
-        div.innerHTML = `
-          <strong>${name}</strong>
-          <span class="msg-time">🕒 ${localTime}</span>
-          <p>${message}</p>
-        `;
-        msgList.appendChild(div);
+              div.innerHTML = `
+                <strong>${name}</strong>
+                <span class="msg-time">🕒 ${localTime}</span>
+                <p>${message}</p>
+              `;
+              msgList.appendChild(div);
+            });
+
+            // jika jumlah pesan > 5 → tampilkan tombol lihat semua / sembunyikan
+            if (allMessages.length > 5) {
+              const toggleBtn = document.createElement("button");
+              toggleBtn.textContent = showingAll
+                ? "Sembunyikan Ucapan "
+                : "Lihat Semua Ucapan ";
+              toggleBtn.classList.add("see-all-btn");
+
+              toggleBtn.addEventListener("click", () => {
+                showingAll = !showingAll;
+                renderMessages(); // render ulang sesuai status
+              });
+
+              msgList.appendChild(toggleBtn);
+            }
+          };
+
+          // render awal (hanya 5 ucapan)
+          renderMessages();
+        }
       });
+          
+          const giftBtn = document.getElementById("giftBtn");
+          const giftModal = document.getElementById("giftModal");
 
-      // jika jumlah pesan > 5 → tampilkan tombol lihat semua / sembunyikan
-      if (allMessages.length > 5) {
-        const toggleBtn = document.createElement("button");
-        toggleBtn.textContent = showingAll
-          ? "Sembunyikan Ucapan "
-          : "Lihat Semua Ucapan ";
-        toggleBtn.classList.add("see-all-btn");
+          giftBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
 
-        toggleBtn.addEventListener("click", () => {
-          showingAll = !showingAll;
-          renderMessages(); // render ulang sesuai status
-        });
+        if (giftModal.classList.contains("show")) {
+          // Slide Up
+          giftModal.classList.remove("show");
+          giftModal.style.maxHeight = giftModal.scrollHeight + "px"; // set current height
+          requestAnimationFrame(() => {
+            giftModal.classList.add("closing");
+            giftModal.style.maxHeight = "0";
+            giftModal.style.opacity = "0";
+          });
 
-        msgList.appendChild(toggleBtn);
-      }
-    };
+          giftModal.addEventListener(
+            "transitionend",
+            function handler() {
+              giftModal.classList.remove("closing");
+              giftModal.style.maxHeight = "";
+              giftModal.removeEventListener("transitionend", handler);
+            }
+          );
+        } else {
+          // Slide Down
+          giftModal.classList.add("show");
+          giftModal.classList.add("opening");
+          giftModal.style.maxHeight = "0";
+          giftModal.style.opacity = "0";
 
-    // render awal (hanya 5 ucapan)
-    renderMessages();
-  }
-});
-    
-    const giftBtn = document.getElementById("giftBtn");
-const giftModal = document.getElementById("giftModal");
+          requestAnimationFrame(() => {
+            const scrollHeight = giftModal.scrollHeight;
+            giftModal.style.maxHeight = scrollHeight + "px";
+            giftModal.style.opacity = "1";
+          });
 
-giftBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-
-  if (giftModal.classList.contains("show")) {
-    // Slide Up
-    giftModal.classList.remove("show");
-    giftModal.style.maxHeight = giftModal.scrollHeight + "px"; // set current height
-    requestAnimationFrame(() => {
-      giftModal.classList.add("closing");
-      giftModal.style.maxHeight = "0";
-      giftModal.style.opacity = "0";
-    });
-
-    giftModal.addEventListener(
-      "transitionend",
-      function handler() {
-        giftModal.classList.remove("closing");
-        giftModal.style.maxHeight = "";
-        giftModal.removeEventListener("transitionend", handler);
-      }
-    );
-  } else {
-    // Slide Down
-    giftModal.classList.add("show");
-    giftModal.classList.add("opening");
-    giftModal.style.maxHeight = "0";
-    giftModal.style.opacity = "0";
-
-    requestAnimationFrame(() => {
-      const scrollHeight = giftModal.scrollHeight;
-      giftModal.style.maxHeight = scrollHeight + "px";
-      giftModal.style.opacity = "1";
-    });
-
-    giftModal.addEventListener(
-      "transitionend",
-      function handler() {
-        giftModal.classList.remove("opening");
-        giftModal.style.maxHeight = ""; // reset to auto
-        giftModal.removeEventListener("transitionend", handler);
-      }
-    );
-  }
-});
-
+          giftModal.addEventListener(
+            "transitionend",
+            function handler() {
+              giftModal.classList.remove("opening");
+              giftModal.style.maxHeight = ""; // reset to auto
+              giftModal.removeEventListener("transitionend", handler);
+            }
+          );
+        }
+      });
     </script>
   </body>
 </html>
