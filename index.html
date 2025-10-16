@@ -507,142 +507,141 @@
       </ul>
     </nav>
   
-    <!--music-->
-    <audio id="bgMusic" src="./assets/music/wedding.mp3" loop></audio>
-    <!-- Tombol Musik -->
-    <div id="musicControl" class="music-btn" style="display: none">
-      <ion-icon name="pause-circle"></ion-icon>
-    </div>
+    <!-- 🎵 Musik -->
+<audio id="bgMusic" src="./assets/music/wedding.mp3" loop></audio>
 
-    <script>
-      const bgMusic = document.getElementById("bgMusic");
-      const musicControl = document.getElementById("musicControl");
+<!-- Tombol Musik -->
+<div id="musicControl" class="music-btn" style="display:none;">
+  <ion-icon name="pause-circle"></ion-icon>
+</div>
 
-      // Musik otomatis saat undangan dibuka
-      document.querySelector(".buka_undangan").addEventListener("click", () => {
-        // Tunggu halaman tampil dulu
-        setTimeout(() => {
-          bgMusic.play().catch(() => {
-            console.log("Autoplay diblokir, user harus menekan tombol play.");
-          });
-          musicControl.style.display = "flex";
-        }, 1500);
-      });
+<script>
+  // ======== SMOOTH SCROLL DENGAN EASING =========
+  function smoothScrollTo(targetY, duration = 800) {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    let startTime = null;
 
-      // Tombol play/pause
-      let isPlaying = true;
-      musicControl.addEventListener("click", () => {
-        if (isPlaying) {
-          bgMusic.pause();
-          musicControl.innerHTML = '<ion-icon name="play-circle"></ion-icon>';
-        } else {
-          bgMusic.play();
-          musicControl.innerHTML = '<ion-icon name="pause-circle"></ion-icon>';
-        }
-        isPlaying = !isPlaying;
-      });
- 
-      // Countdown
-      const weddingDate = new Date("Mar 27, 2026 08:00:00").getTime();
-      const countdownElement = document.getElementById("countdownd");
-      const countdown = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
-        if (distance < 0) {
-          clearInterval(countdown);
-          countdownElement.innerHTML =
-            "<div class='timer'><p>Hari ini!</p></div>";
-          return;
-        }
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        countdownElement.querySelector(".hari").innerText = String(
-          days
-        ).padStart(2, "0");
-        countdownElement.querySelector(".jam").innerText = String(
-          hours
-        ).padStart(2, "0");
-        countdownElement.querySelector(".menit").innerText = String(
-          minutes
-        ).padStart(2, "0");
-        countdownElement.querySelector(".detik").innerText = String(
-          seconds
-        ).padStart(2, "0");
-      }, 1000);
+    function animation(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+      window.scrollTo(0, startY + distance * ease);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
 
-      // 🔖 Ambil nama tamu dari URL
-      const params = new URLSearchParams(window.location.search);
-      const guestName = params.get("to");
+    function easeInOutCubic(t) {
+      return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
 
-      if (guestName) {
-      // Temukan elemen tamu di cover
-      const tamuContainer = document.querySelector(".tamu .text");
+    requestAnimationFrame(animation);
+  }
 
-      // Tambahkan nama tamu ke bawah teks Kepada Yth.
-      const guestLine = document.createElement("p");
-      guestLine.classList.add("guest-name");
-      guestLine.textContent = guestName;
-      tamuContainer.appendChild(guestLine);
-      }
+  // ======== ANIMASI PEMBUKA (COVER) =========
+  const openBtn = document.querySelector(".buka_undangan");
+  const cover = document.getElementById("cover");
+  const main = document.getElementById("mainContent");
+  const bottomNav = document.getElementById("bottomNav");
 
-      // Open invitation
-      document.querySelector(".buka_undangan").addEventListener("click", () => {
-        const cover = document.getElementById("cover");
-        const main = document.getElementById("mainContent");
-        const bottomNav = document.getElementById("bottomNav");
+  const bgMusic = document.getElementById("bgMusic");
+  const musicControl = document.getElementById("musicControl");
 
-          gsap.to(cover, {
+  document.addEventListener("DOMContentLoaded", () => {
+    bgMusic.pause();
+    main.style.display = "none";
+    bottomNav.style.display = "none";
+  });
+
+  openBtn.addEventListener("click", async () => {
+    try {
+      await bgMusic.play(); // ✅ main langsung saat klik (autoplay aman)
+      musicControl.style.display = "flex";
+    } catch (err) {
+      console.log("Autoplay diblokir, menunggu interaksi:", err);
+    }
+
+    // Animasi buka undangan
+    gsap.to(cover, {
+      duration: 1,
+      opacity: 0,
+      onComplete: () => {
+        cover.style.display = "none";
+        main.style.display = "block";
+        bottomNav.style.display = "flex";
+
+        // animasi masuk konten utama
+        gsap.from(main, { duration: 1, opacity: 0, y: 50 });
+        gsap.from(".couple-name", {
+          duration: 1,
+          opacity: 0,
+          y: 30,
+          stagger: 0.3,
+          delay: 1,
+        });
+        const couplePhoto = document.querySelector(".bg_mempelai");
+        if (couplePhoto) {
+          gsap.from(couplePhoto, {
             duration: 1,
             opacity: 0,
-            onComplete: () => {
-              cover.style.display = "none";
-              main.style.display = "block";
-              gsap.from(main, { duration: 1, opacity: 0, y: 50 });
-              gsap.from(".couple-name", {
-                duration: 1,
-                opacity: 0,
-                y: 30,
-                stagger: 0.3,
-                delay: 1,
-              });
-              const couplePhoto = document.querySelector(".bg_mempelai");
-              if (couplePhoto) {
-                gsap.from(couplePhoto, {
-                  duration: 1,
-                  opacity: 0,
-                  scale: 0.8,
-                  delay: 1.5,
-                });
-              }
-              bottomNav.style.display = "flex";
-            },
+            scale: 0.8,
+            delay: 1.5,
           });
-        });
+        }
+      },
+    });
+  });
 
-        // Smooth scroll + active nav highlight
-  // Ambil semua section dan link navigasi
+  // ======== TOMBOL PLAY/PAUSE MUSIK =========
+  let isPlaying = true;
+  musicControl.addEventListener("click", () => {
+    if (isPlaying) {
+      bgMusic.pause();
+      musicControl.innerHTML = '<ion-icon name="play-circle"></ion-icon>';
+    } else {
+      bgMusic.play();
+      musicControl.innerHTML = '<ion-icon name="pause-circle"></ion-icon>';
+    }
+    isPlaying = !isPlaying;
+  });
+
+  // ======== BOTTOM NAV INTERAKTIF =========
   const sections = document.querySelectorAll("section");
   const navLinks = document.querySelectorAll("#bottomNav ul li a");
 
-  // === Scroll spy untuk deteksi aktif berdasarkan posisi scroll ===
+  // Klik navigasi
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
+
+      navLinks.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
+
+      if (targetId === "home") {
+        smoothScrollTo(0, 800);
+      } else if (targetSection) {
+        smoothScrollTo(targetSection.offsetTop - 80, 800);
+      }
+    });
+  });
+
+  // Scroll Spy (aktif saat scroll manual)
   window.addEventListener("scroll", () => {
     let current = "";
     const scrollY = window.pageYOffset;
 
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 120; // sensitivitas area aktif
+      const sectionTop = section.offsetTop - 120;
       const sectionHeight = section.offsetHeight;
-
       if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight - 80) {
         current = section.getAttribute("id");
       }
     });
 
-    // fallback: kalau di paling atas, aktifkan Home
     if (scrollY < 100) current = "home";
 
     navLinks.forEach((link) => {
@@ -653,31 +652,6 @@
     });
   });
 
-  // === Klik event: scroll halus + highlight langsung aktif ===
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault(); // cegah lompat langsung
-      const targetId = link.getAttribute("href").substring(1);
-      const targetSection = document.getElementById(targetId);
-
-      // Hapus semua highlight dulu
-      navLinks.forEach((l) => l.classList.remove("active"));
-      link.classList.add("active");
-
-      // Scroll halus ke section
-      if (targetSection) {
-        window.scrollTo({
-          top: targetSection.offsetTop - 80, // sedikit jarak biar pas
-          behavior: "smooth",
-        });
-      }
-
-      // Khusus Home, pastikan ke atas penuh
-      if (targetId === "home") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    });
-  });
         // Initialize swiper
         window.addEventListener("load", () => {
           new Swiper(".gallery-swiper", {
