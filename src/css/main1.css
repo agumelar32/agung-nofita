@@ -51,6 +51,14 @@ body {
   top: -30%;
   left: -7%;
 }
+@media (max-width: 600px) {
+  #cover .bunga .bunga1 {
+    width: 60%; /* bunga sedikit lebih besar untuk layar kecil */
+    top: -20%; /* geser agar tetap terlihat proporsional */
+    left: -15%; /* posisikan sedikit ke kiri */
+    transform: rotate(90deg);
+  }
+}
 
 #cover .bunga .bunga2 {
   position: absolute;
@@ -134,7 +142,7 @@ body {
   position: absolute;
 }
 
-/* === Bottom Navigation RESPONSIF & RAPI === */
+/* Bottom navigation menu */
 #bottomNav {
   position: fixed;
   bottom: 0;
@@ -142,30 +150,21 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(8px);
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
-  overflow: visible !important;
-  z-index: 9999;
-  padding: 6px 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  padding: 8px 0;
+  backdrop-filter: blur(10px);
 }
 
 #bottomNav ul {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
-}
-
-#bottomNav ul li {
-  flex: 1;
-  text-align: center;
+  gap: 35px;
 }
 
 #bottomNav ul li a {
@@ -175,104 +174,46 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.8rem;
-  transition: color 0.3s ease;
-  z-index: 1;
-}
-
-/* === Icon style === */
-#bottomNav ul li a ion-icon {
+  color: #a9bbc6;
+  transition: transform 0.3s ease, color 0.3s ease;
   font-size: 1.6rem;
-  margin-bottom: 2px;
 }
 
-/* === Lingkaran Highlight === */
+/* Lingkaran highlight */
 #bottomNav ul li a::before {
   content: "";
   position: absolute;
   top: 3px;
-  left: 50%;
-  transform: translateX(-50%) scale(0);
   width: 45px;
   height: 45px;
-  background: radial-gradient(
-    circle at center,
-    rgba(192, 240, 255, 0.6),
-    rgba(255, 255, 255, 0.4)
-  );
+  background: #e4ebf0;
   border-radius: 50%;
-  transition: transform 0.4s ease;
-  z-index: 0;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  z-index: -1;
 }
 
-/* Aktif & hover */
+/* Label teks */
+#bottomNav ul li a span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-top: 4px;
+  transition: color 0.3s ease;
+}
+
+/* Saat aktif atau hover */
 #bottomNav ul li a.active,
 #bottomNav ul li a:hover {
-  color: #fff;
+  color: #000000;
+  transform: scale(1.15);
 }
-
 #bottomNav ul li a.active::before,
 #bottomNav ul li a:hover::before {
-  transform: translateX(-50%) scale(1.2);
-  filter: blur(2px);
+  transform: scale(1);
 }
-
-/* === Efek titik pulse di bawah icon aktif === */
-#bottomNav ul li a.active::after {
-  content: "";
-  position: absolute;
-  bottom: -3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-  animation: pulseGlow 1.5s infinite ease-in-out;
-}
-
-@keyframes pulseGlow {
-  0%,
-  100% {
-    transform: translateX(-50%) scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: translateX(-50%) scale(1.5);
-    opacity: 0.4;
-  }
-}
-
-/* === RESPONSIVE SETTINGS === */
-@media (max-width: 480px) {
-  #bottomNav ul {
-    padding: 4px 0;
-  }
-
-  #bottomNav ul li a {
-    font-size: 0.7rem;
-  }
-
-  #bottomNav ul li a ion-icon {
-    font-size: 1.4rem;
-  }
-
-  #bottomNav ul li a::before {
-    width: 38px;
-    height: 38px;
-  }
-}
-
-@media (max-width: 360px) {
-  #bottomNav ul li a ion-icon {
-    font-size: 1.3rem;
-  }
-
-  #bottomNav ul li a span {
-    display: none; /* sembunyikan teks kalau layar terlalu kecil */
-  }
+#bottomNav ul li a.active span,
+#bottomNav ul li a:hover span {
+  color: #000000;
 }
 
 /* ========== Header ========== */
@@ -621,6 +562,144 @@ body {
 .swiper-pagination-bullet-active {
   background: #e6c58a;
   opacity: 1;
+}
+
+/* ==== LOVE STORY - PASTEL EDITION ==== */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  background: #d2d8d4;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+.timeline-item.left {
+  left: 0;
+}
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-content {
+  background: #ffffff;
+  padding: 30px 35px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-content h3 {
+  color: #6c6656;
+  font-family: "Italiana", serif;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.story-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 15px;
+  filter: brightness(0.97) saturate(0.9);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.story-img:hover {
+  transform: scale(1.03);
+  filter: brightness(1);
+}
+
+.timeline-icon {
+  position: absolute;
+  top: -28px;
+  left: calc(50% - 28px);
+  background: #faf9f8;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid #d2d8d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.timeline-icon img {
+  width: 26px;
+  height: 26px;
+  opacity: 0.85;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #d2d8d4;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  top: 35px;
+  right: -9px;
+  z-index: 2;
+}
+
+.timeline-item.right::before {
+  left: -9px;
+  right: auto;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .timeline::after {
+    left: 20px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 55px;
+    padding-right: 25px;
+  }
+  .timeline-item.right {
+    left: 0;
+  }
+  .timeline-item::before {
+    left: 12px;
+    right: auto;
+  }
+  .timeline-icon {
+    left: -2px;
+  }
 }
 
 /* ===============================
@@ -1070,207 +1149,218 @@ footer {
   margin-top: 5px;
 }
 
-/* ==============================
-   📱 RESPONSIVE FIX UNTUK HP
-   ============================== */
-
-/* --- Atur ulang body dan elemen dasar --- */
-html,
-body {
-  width: 100%;
-  overflow-x: hidden;
+/* ==== Kehormatan & Kebahagiaan ==== */
+#honorSection {
+  background: linear-gradient(to bottom, #faf9f8 0%, #ffffff 100%);
+  text-align: center;
 }
 
-body {
-  font-size: 14px;
+.honor-content {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 40px 25px;
+  border-radius: 25px;
 }
 
-/* --- COVER / HALAMAN AWAL --- */
+.honor-text {
+  font-size: 17px;
+  color: #555;
+  line-height: 1.8;
+  font-weight: 400;
+  margin-top: 20px;
+}
+
+.divider-heart {
+  margin: 40px auto 30px;
+}
+
+.divider-heart img {
+  width: 32px;
+  height: 32px;
+  opacity: 0.75;
+}
+
+.thank-text {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 40px;
+}
+
+.signature {
+  font-family: "Italiana", serif;
+  font-size: 20px;
+  color: #6c6656;
+  line-height: 1.6;
+}
+
+.signature span {
+  display: inline-block;
+  font-size: 24px;
+  color: #998d7f;
+  margin-top: 5px;
+}
+
+/* Fade Animation */
+.fade-slide {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-slide.aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================================
+   📱 RESPONSIVE FIX - MOBILE & TABLET
+   ====================================== */
+
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  #cover .cover_text .mempelai h1 {
+    font-size: 50px;
+  }
+
+  #header .header_couple {
+    width: 300px;
+    height: 400px;
+    background-size: cover;
+  }
+
+  .couple-info h3 {
+    font-size: 3rem;
+  }
+
+  .event-card {
+    width: 80%;
+  }
+
+  #header .date #countdownd {
+    width: 100%;
+    gap: 15px;
+  }
+
+  #bottomNav ul {
+    gap: 25px;
+  }
+}
+
+/* Mobile (max-width: 600px) */
 @media (max-width: 600px) {
+  /* Cover section */
   #cover {
     flex-direction: column;
+    background-position: center;
     background-size: cover;
   }
 
   #cover .cover_text {
-    margin-top: 200px;
+    margin-top: 180px;
     padding: 0 20px;
   }
 
   #cover .cover_text .mempelai h1 {
     font-size: 42px;
-    line-height: 55px;
+    line-height: 1.2;
   }
 
   #cover .cover_text h3 {
     font-size: 14px;
-  }
-
-  #cover .bunga .bunga1 {
-    width: 60%;
-    top: -20%;
-    left: -10%;
-  }
-
-  #cover .bunga .bunga2 {
-    width: 50%;
-    right: -100px;
-    bottom: -60px;
+    margin-bottom: 20px;
   }
 
   #cover .tamu .buka_undangan {
     font-size: 1rem;
-    padding: 10px 18px;
+    padding: 10px 20px;
   }
-}
 
-/* --- HEADER COUPLE --- */
-@media (max-width: 600px) {
+  /* Header couple image */
   #header .header_couple {
-    width: 90%;
+    width: 85%;
     height: 380px;
-    background-size: contain;
+    background-size: cover;
+    border-radius: 180px 180px 0 0;
   }
 
   #header .header_couple h1 {
-    font-size: 52px;
+    font-size: 60px;
   }
 
-  #header img {
-    width: 220px;
-    margin-top: -40px;
-  }
-
+  /* Countdown */
   #header .date #countdownd {
     width: 90%;
+    gap: 8px;
   }
-
   #header .date #countdownd .timer {
     width: 60px;
-    padding: 12px;
-  }
-}
-
-/* --- COUPLE SECTION --- */
-@media (max-width: 600px) {
-  #coupleSection .section-title {
-    font-size: 2rem;
+    padding: 12px 15px;
   }
 
+  /* Couple Section */
+  #coupleSection {
+    padding: 40px 10px;
+  }
+  .couple-cards {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .couple-card {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
   .couple-info h3 {
     font-size: 2.5rem;
   }
 
-  .couple-cards {
-    flex-direction: column;
-    align-items: center;
+  /* Timeline */
+  .timeline {
+    padding: 10px 0;
   }
-
-  .couple-card {
-    width: 90%;
+  .timeline-item {
+    padding: 20px 25px;
   }
-
-  .couple-card .couple-img {
-    width: 80%;
-  }
-}
-
-/* --- WEDDING EVENT --- */
-@media (max-width: 600px) {
-  .event-cards {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .event-card {
-    width: 90%;
+  .timeline-content {
     padding: 20px;
   }
 
-  .map-btn {
-    font-size: 0.9rem;
-    padding: 8px 15px;
-  }
-}
-
-/* --- GALLERY --- */
-@media (max-width: 600px) {
+  /* Gallery */
   #gallerySection {
-    padding: 50px 10px;
+    padding: 60px 10px;
   }
-
   .gallery-swiper {
     max-width: 95%;
   }
 
-  .swiper-button-next,
-  .swiper-button-prev {
-    display: none; /* tombol next/prev disembunyikan di HP kecil */
-  }
-}
-
-/* --- GIFT SECTION --- */
-@media (max-width: 600px) {
-  .giftsection {
-    padding: 50px 10px;
-  }
-
+  /* Gift Section */
   .gift-modal-content {
     width: 90%;
-    padding: 1.2rem;
   }
 
-  .atm-card {
-    height: 160px;
+  /* Bottom Nav */
+  #bottomNav {
+    padding: 5px 0;
   }
-
-  .card-number {
-    font-size: 1rem;
-  }
-
-  .copy-btn {
-    font-size: 0.85rem;
-  }
-}
-
-/* --- FORM UCAPAN --- */
-@media (max-width: 600px) {
-  form {
-    padding: 0 10px;
-  }
-
-  input,
-  select,
-  textarea {
-    font-size: 0.9rem;
-  }
-
-  button {
-    font-size: 0.9rem;
-  }
-}
-
-/* --- BOTTOM NAVIGATION --- */
-@media (max-width: 480px) {
   #bottomNav ul {
-    max-width: 100%;
+    gap: 20px;
   }
-
-  #bottomNav ul li a ion-icon {
+  #bottomNav ul li a {
     font-size: 1.3rem;
   }
-
   #bottomNav ul li a span {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
-}
 
-@media (max-width: 360px) {
-  #bottomNav ul li a span {
-    display: none; /* sembunyikan teks di layar sangat kecil */
+  /* Honor Section */
+  .honor-content {
+    padding: 25px 15px;
   }
-}
+  .honor-text {
+    font-size: 15px;
+  }
 
-* {
-  max-width: 100%;
+  /* Guest Messages */
+  .message-item {
+    font-size: 0.9rem;
+  }
 }
