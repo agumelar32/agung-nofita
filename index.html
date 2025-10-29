@@ -3,74 +3,141 @@
   <head>
     <meta charset="UTF-8" />
     <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="description" content="The Wedding of Agung & Nofita" />
+    <meta
       property="og:image"
       content="https://agumelar32.github.io/agung-nofita/assets/img/link.png"
     />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="The Wedding of Agung & Nofita" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="./assets/img/favicon.ico"
-      type="image/x-icon"
-    />
-    <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./assets/img/favicon.ico" />
     <title>Agung & Nofita | Wedding Invitation</title>
-    <link rel="stylesheet" href="./src/css/main1.css" />
 
+    <link rel="stylesheet" href="./src/css/main1.css" />
     <link rel="stylesheet" href="./assets/css/style-mobile.css" />
 
-    <!-- swiper js -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.0.5/swiper-bundle.css"
-    />
-    <!-- aos -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-    />
-
+    <!-- Responsive tambahan -->
     <style>
-      /* Fade-slide animation */
-      .fade-slide {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-      .fade-slide.show {
-        opacity: 1;
-        transform: translateY(0);
+      /* =============== RESPONSIVE FIX =============== */
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100%;
       }
 
-      /* Tombol Musik */
-      .music-btn {
-        position: fixed;
-        bottom: 80px;
-        right: 20px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
+      /* Cover */
+      #cover {
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        z-index: 1000;
-        backdrop-filter: blur(10px);
-        transition: transform 0.3s ease, background 0.3s ease;
+        text-align: center;
+        padding: 1rem;
       }
 
-      .music-btn ion-icon {
-        font-size: 2.2rem;
-        color: #a9bbc6;
-        transition: transform 0.3s ease;
+      .cover_text h1 {
+        font-size: clamp(1.8rem, 5vw, 3rem);
       }
 
-      .music-btn:hover {
-        background: rgba(51, 189, 214, 0.15);
-        transform: scale(1.1);
+      .buka_undangan {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 10px;
+      }
+
+      /* Header Couple */
+      .header_couple h1 {
+        font-size: clamp(1.5rem, 6vw, 3rem);
+      }
+
+      .event-card {
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
+      }
+
+      /* Timeline gambar menyesuaikan */
+      .story-img {
+        width: 100%;
+        max-width: 320px;
+        border-radius: 12px;
+        height: auto;
+      }
+
+      /* Gallery */
+      .gallery-swiper img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+      }
+
+      /* Bottom nav */
+      #bottomNav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-around;
+        z-index: 999;
+        padding: 6px 0;
+      }
+
+      #bottomNav ul {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      #bottomNav li a {
+        font-size: 0.8rem;
+        color: #666;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      #bottomNav li a.active {
+        color: #3cb3b3;
+      }
+
+      /* Musik Button */
+      .music-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 85px;
+        right: 15px;
+      }
+
+      /* Responsif font umum */
+      h2.section-title {
+        font-size: clamp(1.3rem, 4vw, 2rem);
+      }
+
+      @media (max-width: 768px) {
+        .couple-cards {
+          flex-direction: column;
+          gap: 20px;
+        }
+        .couple-card img {
+          width: 80%;
+        }
+        .event-cards {
+          flex-direction: column;
+          gap: 20px;
+        }
       }
     </style>
   </head>
@@ -693,12 +760,20 @@
 
       // Musik otomatis saat undangan dibuka
       document.querySelector(".buka_undangan").addEventListener("click", () => {
-        // Tunggu halaman tampil dulu
         setTimeout(() => {
-          bgMusic.play().catch(() => {
-            console.log("Autoplay diblokir, user harus menekan tombol play.");
-          });
-          musicControl.style.display = "flex";
+          const playPromise = bgMusic.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                musicControl.style.display = "flex";
+              })
+              .catch(() => {
+                console.log(
+                  "Autoplay diblokir. Pengguna harus menekan tombol musik."
+                );
+                musicControl.style.display = "flex";
+              });
+          }
         }, 1500);
       });
 
