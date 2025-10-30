@@ -138,7 +138,7 @@ body {
 }
 
 #cover .bg_mempelai {
-  width: 50%;
+  width: 100%;
   position: absolute;
 }
 
@@ -230,6 +230,7 @@ body {
   z-index: 1;
 }
 
+/* Logo / dekorasi */
 #header img {
   margin-top: -70px;
   width: 300px;
@@ -242,6 +243,7 @@ body {
   color: var(--text);
 }
 
+/* Foto couple bulat */
 #header .header_couple {
   width: 400px;
   height: 500px;
@@ -276,6 +278,94 @@ body {
 
 #header .header_couple h1:nth-child(3) {
   color: var(--text);
+}
+
+/* ========== Tambahan Responsif ========== */
+
+/* Tablet */
+@media (max-width: 992px) {
+  #header img {
+    width: 250px;
+    margin-top: -40px;
+  }
+
+  #header p.A {
+    font-size: 26px;
+  }
+
+  #header .header_couple {
+    width: 320px;
+    height: 420px;
+    background-size: 320px auto;
+    border-radius: 160px 160px 0 0;
+  }
+
+  #header .header_couple h1 {
+    font-size: 60px;
+    line-height: 40px;
+  }
+}
+
+/* HP besar (max 768px) */
+@media (max-width: 768px) {
+  #header {
+    padding: 40px 0;
+  }
+
+  #header img {
+    width: 200px;
+    margin-top: -20px;
+  }
+
+  #header p.A {
+    font-size: 22px;
+  }
+
+  #header .header_couple {
+    width: 260px;
+    height: 360px;
+    background-size: 260px auto;
+    border-radius: 130px 130px 0 0;
+  }
+
+  #header .header_couple img {
+    width: 120px;
+    margin-bottom: -30px;
+  }
+
+  #header .header_couple h1 {
+    font-size: 48px;
+    line-height: 35px;
+  }
+}
+
+/* HP kecil (max 480px) */
+@media (max-width: 480px) {
+  #header img {
+    width: 160px;
+    margin-top: 0;
+  }
+
+  #header p.A {
+    font-size: 18px;
+  }
+
+  #header .header_couple {
+    width: 220px;
+    height: 300px;
+    background-size: 220px auto;
+    border-radius: 110px 110px 0 0;
+  }
+
+  #header .header_couple img {
+    width: 100px;
+    margin-bottom: -25px;
+  }
+
+  #header .header_couple h1 {
+    font-size: 36px;
+    line-height: 30px;
+  }
 }
 
 /* ========== Date Countdown ========== */
@@ -489,58 +579,139 @@ body {
   }
 }
 
-/* ========== Gallery Slider ========== */
-
 /* 💐 Gallery Section */
 #gallerySection {
-  background: url(/assets/img/background.png);
+  background: url(/assets/img/background.png) no-repeat center center/cover;
   text-align: center;
-  padding: 80px 20px;
+  padding: 100px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lapisan gradasi halus untuk kesan elegan */
+#gallerySection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 #gallerySection .section-title {
-  color: #a9bbc6;
-  font-family: "Playfair Display", serif;
-  font-size: 2rem;
-  margin-bottom: 40px;
-}
-.gallery-swiper {
-  background: url(/assets/img/background.png);
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 0;
   position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  color: #f4e8d3; /* champagne gold tone */
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(244, 232, 211, 0.3);
+  z-index: 1;
 }
 
+/* Garis emas dekoratif di bawah judul */
+#gallerySection .section-title::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  margin: 20px auto 0;
+  background: linear-gradient(to right, #f4e8d3, #c3a27c);
+  border-radius: 3px;
+}
+
+/* Container swiper */
+.gallery-swiper {
+  background: rgba(255, 255, 255, 0.05);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 0;
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(244, 232, 211, 0.15);
+  z-index: 1;
+}
+
+/* Setiap slide */
 .gallery-swiper .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.gallery-swiper .swiper-slide img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 20px;
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-/* Efek aktif */
-.gallery-swiper .swiper-slide-active img {
-  transform: scale(1.02);
-  opacity: 1;
-}
-.gallery-swiper .swiper-slide-next img,
-.gallery-swiper .swiper-slide-prev img {
-  opacity: 0.5;
+/* Gambar di dalam slide */
+.gallery-swiper .swiper-slide img {
+  width: 90%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 1s ease;
+  opacity: 0.7;
   transform: scale(0.95);
 }
 
+/* Slide aktif: efek elegan dengan sorot emas */
+.gallery-swiper .swiper-slide-active img {
+  transform: scale(1.05);
+  opacity: 1;
+  box-shadow: 0 0 35px rgba(244, 232, 211, 0.4);
+  filter: drop-shadow(0 0 20px rgba(244, 232, 211, 0.3));
+}
+
+/* Slide di sekitar: lebih lembut */
+.gallery-swiper .swiper-slide-next img,
+.gallery-swiper .swiper-slide-prev img {
+  opacity: 0.6;
+  transform: scale(0.93);
+}
+
+/* Hilangkan tombol navigasi */
+.swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
+}
+
+/* Pagination dots elegan */
+.swiper-pagination-bullet {
+  background: rgba(244, 232, 211, 0.4);
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  margin: 6px;
+  transition: all 0.4s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: linear-gradient(to right, #f4e8d3, #c3a27c);
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(244, 232, 211, 0.5);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  #gallerySection {
+    padding: 70px 15px;
+  }
+
+  #gallerySection .section-title {
+    font-size: 2rem;
+  }
+
+  .gallery-swiper {
+    max-width: 95%;
+    border-radius: 20px;
+  }
+
+  .gallery-swiper .swiper-slide img {
+    width: 100%;
+    border-radius: 15px;
+  }
+}
 /* Tombol navigasi */
 .swiper-button-next,
 .swiper-button-prev {
@@ -564,60 +735,70 @@ body {
   opacity: 1;
 }
 
-/* ==== LOVE STORY - PASTEL EDITION ==== */
+/* ==== LOVE STORY - PASTEL CENTERED EDITION ==== */
 .timeline {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 60px 0;
 }
 
 .timeline::after {
   content: "";
   position: absolute;
   width: 4px;
-  background: #d2d8d4;
+  background: linear-gradient(to bottom, #e9e3da, #d2d8d4);
   top: 0;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 2px;
+  box-shadow: 0 0 10px rgba(210, 216, 212, 0.4);
 }
 
+/* ===== ITEM SETUP ===== */
 .timeline-item {
   position: relative;
-  width: 50%;
-  padding: 20px 40px;
+  width: 45%; /* sedikit sempit agar masuk ke tengah */
+  padding: 20px 30px;
   box-sizing: border-box;
 }
 
+/* LEFT ITEM (sedikit geser ke kanan) */
 .timeline-item.left {
-  left: 0;
-}
-.timeline-item.right {
-  left: 50%;
+  left: 5%; /* awalnya 0%, geser agar lebih ke tengah */
+  text-align: right;
 }
 
+/* RIGHT ITEM (sedikit geser ke kiri) */
+.timeline-item.right {
+  left: 50%;
+  transform: translateX(-5%); /* geser ke kiri mendekati tengah */
+  text-align: left;
+}
+
+/* ===== CONTENT CARD ===== */
 .timeline-content {
   background: #ffffff;
   padding: 30px 35px;
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 1;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid #eee;
 }
 
 .timeline-content:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-content h3 {
   color: #6c6656;
   font-family: "Italiana", serif;
-  font-size: 20px;
-  margin-bottom: 8px;
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
 .timeline-content p {
@@ -627,19 +808,22 @@ body {
   margin-bottom: 15px;
 }
 
+/* ===== IMAGE ===== */
 .story-img {
   width: 100%;
-  height: 190px;
+  height: 200px;
   object-fit: cover;
   border-radius: 15px;
   filter: brightness(0.97) saturate(0.9);
   transition: transform 0.3s ease, filter 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 .story-img:hover {
   transform: scale(1.03);
   filter: brightness(1);
 }
 
+/* ===== ICON BULAT DI GARIS ===== */
 .timeline-icon {
   position: absolute;
   top: -28px;
@@ -653,7 +837,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 2;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .timeline-icon img {
@@ -662,6 +846,7 @@ body {
   opacity: 0.85;
 }
 
+/* ===== DOT DI GARIS ===== */
 .timeline-item::before {
   content: "";
   position: absolute;
@@ -670,7 +855,7 @@ body {
   background: #d2d8d4;
   border: 4px solid #fff;
   border-radius: 50%;
-  top: 35px;
+  top: 40px;
   right: -9px;
   z-index: 2;
 }
@@ -680,25 +865,36 @@ body {
   right: auto;
 }
 
-/* RESPONSIVE */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .timeline::after {
-    left: 20px;
+    left: 25px;
   }
+
   .timeline-item {
     width: 100%;
-    padding-left: 55px;
+    padding-left: 65px;
     padding-right: 25px;
+    margin-bottom: 40px;
   }
+
+  .timeline-item.left,
   .timeline-item.right {
     left: 0;
+    transform: none;
+    text-align: left;
   }
+
   .timeline-item::before {
-    left: 12px;
-    right: auto;
+    left: 16px;
   }
+
   .timeline-icon {
-    left: -2px;
+    left: -3px;
+  }
+
+  .story-img {
+    height: 180px;
   }
 }
 
