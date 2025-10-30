@@ -1211,156 +1211,131 @@ footer {
   transform: translateY(0);
 }
 
-/* ======================================
-   📱 RESPONSIVE FIX - MOBILE & TABLET
-   ====================================== */
+/* === RESPONSIVE ADJUSTMENTS === */
 
-/* Tablet (max-width: 1024px) */
-@media (max-width: 1024px) {
-  #cover .cover_text .mempelai h1 {
-    font-size: 50px;
-  }
-
-  #header .header_couple {
-    width: 300px;
-    height: 400px;
-    background-size: cover;
-  }
-
-  .couple-info h3 {
-    font-size: 3rem;
-  }
-
-  .event-card {
-    width: 80%;
-  }
-
-  #header .date #countdownd {
-    width: 100%;
-    gap: 15px;
-  }
-
-  #bottomNav ul {
-    gap: 25px;
-  }
+/* Umum */
+body,
+html {
+  overflow-x: hidden;
 }
 
-/* Mobile (max-width: 600px) */
-@media (max-width: 600px) {
-  /* Cover section */
-  #cover {
-    flex-direction: column;
-    background-position: center;
-    background-size: cover;
-  }
+/* Gambar */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
-  #cover .cover_text {
-    margin-top: 180px;
-    padding: 0 20px;
-  }
+/* Cover Section */
+#cover {
+  text-align: center;
+  padding: 20px;
+}
 
-  #cover .cover_text .mempelai h1 {
-    font-size: 42px;
-    line-height: 1.2;
-  }
+.bg_mempelai {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
-  #cover .cover_text h3 {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
+/* Couple Cards */
+.couple-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
 
-  #cover .tamu .buka_undangan {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
+.couple-card {
+  flex: 1 1 280px;
+  max-width: 320px;
+}
 
-  /* Header couple image */
-  #header .header_couple {
-    width: 85%;
-    height: 380px;
-    background-size: cover;
-    border-radius: 180px 180px 0 0;
-  }
+/* Event Cards */
+.event-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
 
-  #header .header_couple h1 {
-    font-size: 60px;
-  }
+.event-card {
+  flex: 1 1 280px;
+  max-width: 340px;
+}
 
-  /* Countdown */
-  #header .date #countdownd {
-    width: 90%;
-    gap: 8px;
-  }
-  #header .date #countdownd .timer {
-    width: 60px;
-    padding: 12px 15px;
-  }
+/* Timeline (Love Story) */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
 
-  /* Couple Section */
-  #coupleSection {
-    padding: 40px 10px;
+.timeline-item {
+  width: 100%;
+}
+
+/* Gallery Swiper */
+.swiper-slide img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Bottom Navigation (biar rapi di HP) */
+#bottomNav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
+  z-index: 999;
+}
+
+#bottomNav ul {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#bottomNav ul li {
+  list-style: none;
+  text-align: center;
+  flex: 1;
+}
+
+#bottomNav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+/* Music Button lebih besar di HP */
+.music-btn {
+  width: 50px;
+  height: 50px;
+}
+
+/* === Media Query untuk ukuran kecil === */
+@media (max-width: 768px) {
+  h1,
+  h2,
+  h3 {
+    font-size: 90%;
   }
-  .couple-cards {
-    flex-direction: column;
-    gap: 40px;
+  .section-title {
+    font-size: 1.6rem;
   }
+  .event-card,
   .couple-card {
-    width: 100%;
-    max-width: 280px;
-    margin: 0 auto;
+    max-width: 100%;
   }
-  .couple-info h3 {
-    font-size: 2.5rem;
-  }
-
-  /* Timeline */
-  .timeline {
-    padding: 10px 0;
-  }
-  .timeline-item {
-    padding: 20px 25px;
-  }
-  .timeline-content {
-    padding: 20px;
-  }
-
-  /* Gallery */
-  #gallerySection {
-    padding: 60px 10px;
-  }
-  .gallery-swiper {
-    max-width: 95%;
-  }
-
-  /* Gift Section */
   .gift-modal-content {
     width: 90%;
-  }
-
-  /* Bottom Nav */
-  #bottomNav {
-    padding: 5px 0;
-  }
-  #bottomNav ul {
-    gap: 20px;
-  }
-  #bottomNav ul li a {
-    font-size: 1.3rem;
-  }
-  #bottomNav ul li a span {
-    font-size: 0.65rem;
-  }
-
-  /* Honor Section */
-  .honor-content {
-    padding: 25px 15px;
-  }
-  .honor-text {
-    font-size: 15px;
-  }
-
-  /* Guest Messages */
-  .message-item {
-    font-size: 0.9rem;
   }
 }
