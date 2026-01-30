@@ -1,145 +1,159 @@
 /** @format */
 
-// get url parameter
+// ==============================
+// Ambil Nama Tamu dari URL
+// ==============================
 const urlParams = new URLSearchParams(window.location.search);
-const nama_tamu = urlParams.get("kepada");
-const span_tamu = document.querySelector(".nama_url");
-const creat_meta = document.createElement("meta");
-creat_meta.name = "description";
-creat_meta.content = `Kepada yang Terhormat ${nama_tamu}`;
-document.getElementsByTagName("head")[0].appendChild(creat_meta);
+const namaTamu = urlParams.get("kepada") || "Tamu Spesial";
+const spanTamu = document.querySelector(".nama_url");
 
-span_tamu.textContent = nama_tamu;
-// get url parameter end
+// Tampilkan nama tamu
+if (spanTamu) spanTamu.textContent = namaTamu;
 
-// home animation
-const btn_open = document.querySelector(".tombol");
-let tl = gsap.timeline();
+// Tambahkan meta description dinamis
+const meta = document.createElement("meta");
+meta.name = "description";
+meta.content = `Kepada yang Terhormat ${namaTamu}`;
+document.head.appendChild(meta);
 
-btn_open.addEventListener("click", () => {
-  const cover = document.querySelector("#cover");
-  const main = document.getElementById("home");
-  const stagger = document.querySelectorAll(".stagger_animation");
-  cover.classList.add("active");
-  main.classList.add("show");
-  stagger.forEach((e) => {
-    e.classList.add("active");
-  });
-  gsap.to(".active", {
-    duration: 0.5,
-    stagger: 0.3,
-    clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-  });
-  const audio = new Audio("/assets/music/music.mp3");
-  audio.play();
-});
-// home animation end
-
+// ==============================
+// Animasi Pembuka (GSAP)
+// ==============================
+const tombolBuka = document.querySelector(".tombol");
+const music = document.getElementById("bgMusic");
 const bottomNav = document.getElementById("bottomNav");
 
-document.querySelector(".buka_undangan").addEventListener("click", () => {
-  const cover = document.getElementById("cover");
-  const main = document.getElementById("mainContent");
+if (tombolBuka) {
+  tombolBuka.addEventListener("click", () => {
+    const cover = document.querySelector("#cover");
+    const main = document.getElementById("home");
+    const staggerElements = document.querySelectorAll(".stagger_animation");
 
-  gsap.to(cover, {
-    duration: 1,
-    opacity: 0,
-    onComplete: () => {
-      cover.style.display = "none";
-      main.style.display = "block";
-      gsap.from(main, { duration: 1, opacity: 0, y: 50 });
-      bottomNav.style.display = "flex"; // Tampilkan menu setelah buka undangan
-    },
+    cover.classList.add("active");
+    main.classList.add("show");
+    staggerElements.forEach((el) => el.classList.add("active"));
+
+    gsap.to(".active", {
+      duration: 0.5,
+      stagger: 0.3,
+      clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+    });
+
+    if (music) music.play();
   });
-});
+}
 
-// Smooth scroll dan highlight active
-document.querySelectorAll("#bottomNav ul li a").forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
+// ==============================
+// Buka Undangan (Fade Out Cover)
+// ==============================
+const bukaUndangan = document.querySelector(".buka_undangan");
+
+if (bukaUndangan) {
+  bukaUndangan.addEventListener("click", () => {
+    const cover = document.getElementById("cover");
+    const mainContent = document.getElementById("mainContent");
+
+    gsap.to(cover, {
+      duration: 1,
+      opacity: 0,
+      onComplete: () => {
+        cover.style.display = "none";
+        mainContent.style.display = "block";
+
+        gsap.from(mainContent, { duration: 1, opacity: 0, y: 50 });
+        if (bottomNav) bottomNav.style.display = "flex";
+        if (music) music.play();
+      },
+    });
+  });
+}
+
+// ==============================
+// Smooth Scroll Navigasi Bawah
+// ==============================
+const navLinks = document.querySelectorAll("#bottomNav ul li a");
+
+navLinks.forEach((anchor) => {
+  anchor.addEventListener("click", (e) => {
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    target.scrollIntoView({ behavior: "smooth" });
+    const target = document.querySelector(anchor.getAttribute("href"));
+    if (target) target.scrollIntoView({ behavior: "smooth" });
   });
 });
 
+// ==============================
+// Highlight Menu Aktif Saat Scroll
+// ==============================
 const sections = document.querySelectorAll(
   "#cover, #coupleSection, #weddingEvent, #gallerySection, #wishesSection"
 );
-const navLinks = document.querySelectorAll("#bottomNav ul li a");
 
-window.addEventListener("load", () => {
-  new Swiper(".gallery-swiper", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    centeredSlides: true,
-    grabCursor: true,
-    pagination: { el: ".swiper-pagination", clickable: true },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    effect: "coverflow",
-    coverflowEffect: {
-      rotate: 20,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: true,
-    },
-    breakpoints: {
-      640: { slidesPerView: 1 },
-      1024: { slidesPerView: 1 },
-    },
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    if (pageYOffset >= sectionTop - 100) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
   });
 });
 
-// cowndown timer
-let countDownDate = new Date("Jul 22, 2023 18:00:00").getTime();
+// ==============================
+// Countdown Timer
+// ==============================
+const targetDate = new Date("2025-07-22T18:00:00").getTime();
 const hari = document.querySelector(".hari");
 const jam = document.querySelector(".jam");
 const menit = document.querySelector(".menit");
 const detik = document.querySelector(".detik");
 
-let x = setInterval(function () {
-  let now = new Date().getTime();
-  let distance = countDownDate - now;
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
 
-  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  if (distance <= 0) return;
 
-  hari.innerHTML = days;
-  jam.innerHTML = hours;
-  menit.innerHTML = minutes;
-  detik.innerHTML = seconds;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  if (hari) hari.textContent = days;
+  if (jam) jam.textContent = hours;
+  if (menit) menit.textContent = minutes;
+  if (detik) detik.textContent = seconds;
 }, 1000);
-// cowndount timer end
 
-// Inisialisasi gallery swiper satu foto per tampilan
-const gallerySwiper = new Swiper(".gallery-swiper", {
-  slidesPerView: 1, // hanya satu foto tampil
-  spaceBetween: 0,
-  loop: true,
-  effect: "slide", // bisa diganti "fade" untuk efek halus
-  speed: 800,
-  autoplay: {
-    delay: 4000,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
-
-//music
-const music = document.getElementById("bgMusic");
-document.querySelector(".buka_undangan").addEventListener("click", () => {
-  music.play();
+// ==============================
+// Inisialisasi Swiper Gallery
+// ==============================
+window.addEventListener("load", () => {
+  new Swiper(".gallery-swiper", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    effect: "fade",
+    speed: 800,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 });
