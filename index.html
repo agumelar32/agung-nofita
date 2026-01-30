@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,13 +22,14 @@
     <title>Agung & Nofita | Wedding Invitation</title>
     <link rel="stylesheet" href="./src/css/main1.css" />
 
-    <link rel="stylesheet" href="./assets/css/style-mobile.css" />
+    <!-- <link rel="stylesheet" href="./assets/css/style-mobile.css" /> -->
 
     <!-- swiper js -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.0.5/swiper-bundle.css"
+      href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
     />
+
     <!-- aos -->
     <link
       rel="stylesheet"
@@ -39,7 +41,9 @@
       .fade-slide {
         opacity: 0;
         transform: translateY(30px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
       }
       .fade-slide.show {
         opacity: 1;
@@ -62,7 +66,9 @@
         cursor: pointer;
         z-index: 1000;
         backdrop-filter: blur(10px);
-        transition: transform 0.3s ease, background 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          background 0.3s ease;
       }
 
       .music-btn ion-icon {
@@ -112,11 +118,6 @@
           </div>
         </div>
       </div>
-      <img
-        src="./assets/img/unnamed.png"
-        alt="Foto pasangan Agung & Nofita"
-        class="bg_mempelai"
-      />
     </div>
 
     <!-- main content -->
@@ -159,29 +160,11 @@
         class="section"
         style="
           position: relative;
-          background: linear-gradient(180deg, #a9bbc6, #a9bbc6);
-          padding: 80px 20px;
+          padding: 50px 20px;
           text-align: center;
           overflow: hidden;
         "
       >
-        <!-- Motif atas -->
-        <img
-          src="./assets/img/motif.png"
-          alt="Motif dekoratif"
-          style="
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 1200px;
-            opacity: 0.12;
-            pointer-events: none;
-            z-index: 0;
-          "
-        />
-
         <!-- Konten Quran -->
         <div
           style="
@@ -190,42 +173,15 @@
             animation: fadeIn 2s ease-in-out;
           "
         >
-          <h2
-            class="section-title"
-            style="
-              color: #6c6656;
-              font-family: 'Italiana', serif;
-              font-size: 2rem;
-              margin-bottom: 20px;
-            "
-          >
-            Ayat Al-Qur'an
-          </h2>
+          <h2 class="section-title">Ayat Al-Qur'an</h2>
 
-          <p
-            style="
-              font-size: 1.4rem;
-              font-family: 'Amiri Quran', serif;
-              color: #6c6656;
-              line-height: 2;
-              max-width: 800px;
-              margin: 20px auto;
-            "
-          >
+          <p class="arab">
             وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
             لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ
             إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
           </p>
 
-          <p
-            style="
-              font-size: 1rem;
-              color: #555;
-              max-width: 700px;
-              margin: 0 auto;
-              font-style: italic;
-            "
-          >
+          <p class="latin">
             "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
             untukmu pasangan-pasangan dari jenismu sendiri, agar kamu merasa
             tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan
@@ -251,43 +207,26 @@
       </style>
 
       <!-- couple section -->
-      <section id="coupleSection" class="section">
-        <h2 class="section-title">Our Wonderful Couple</h2>
-        <div class="couple-cards">
-          <div class="couple-card">
-            <img
-              src="./assets/img/pasangan.png"
-              alt="Agung"
-              class="couple-img"
-            />
-            <div class="couple-info">
-              <h3>Agung</h3>
-              <p class="parents">Putra dari: Bapak Agus & Ibu Siti</p>
-              <div class="ig-links">
-                <a href="https://www.instagram.com/a_dc___/" target="_blank"
-                  ><ion-icon name="logo-instagram"></ion-icon
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="couple-card">
-            <img
-              src="./assets/img/pasangan.png"
-              alt="Nofita"
-              class="couple-img"
-            />
-            <div class="couple-info">
-              <h3>Nofita</h3>
-              <p class="parents">Putri dari: Bapak Budi & Ibu Lina</p>
-              <div class="ig-links">
-                <a
-                  href="https://www.instagram.com/fietanofita.mua/"
-                  target="_blank"
-                  ><ion-icon name="logo-instagram"></ion-icon
-                ></a>
-              </div>
-            </div>
-          </div>
+      <section id="coupleSection" class="couple">
+        <h2>Our Wedding Couple</h2>
+        <div class="person-box">
+          <div class="photo-placeholder men"></div>
+          <h1 class="name">Agung</h1>
+          <p class="sub-text">Putra dari: Bapak Agus & Ibu Siti</p>
+          <a class="instagram" href=""
+            ><ion-icon name="logo-instagram"></ion-icon>Agung</a
+          >
+        </div>
+
+        <div class="divider">&</div>
+
+        <div class="person-box">
+          <div class="photo-placeholder women"></div>
+          <h1 class="name">Nofita</h1>
+          <p class="sub-text">Putri dari: Bapak Agus & Ibu Siti</p>
+          <a class="instagram" href=""
+            ><ion-icon name="logo-instagram"></ion-icon>Nofita</a
+          >
         </div>
       </section>
       <!-- wedding event section -->
@@ -340,23 +279,17 @@
       <!--galery-->
       <section id="gallerySection" class="section">
         <h2 class="section-title">Gallery</h2>
-        <div class="swiper gallery-swiper">
+        <div class="swiper mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./assets/img/pasangan.png" alt="Gallery 1" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./assets/img/pasangan.png" alt="Gallery 2" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./assets/img/pasangan.png" alt="Gallery 3" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./assets/img/pasangan.png" alt="Gallery 4" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./assets/img/pasangan.png" alt="Gallery 5" />
-            </div>
+            <div class="swiper-slide slide slide1"></div>
+            <div class="swiper-slide slide slide2"></div>
+            <div class="swiper-slide slide slide3"></div>
+            <div class="swiper-slide slide slide4"></div>
+            <div class="swiper-slide slide slide5"></div>
+            <div class="swiper-slide slide slide6"></div>
+            <div class="swiper-slide slide slide7"></div>
+            <div class="swiper-slide slide slide8"></div>
+            <div class="swiper-slide slide slide9"></div>
           </div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
@@ -365,115 +298,80 @@
       </section>
 
       <!-- Love Story Section - Pastel Edition -->
-      <section
-        id="loveStory"
-        class="section"
-        style="background: #faf9f8; padding: 90px 20px"
-      >
-        <h2 class="section-title" style="text-align: center">Our Love Story</h2>
-        <p
-          style="
-            text-align: center;
-            color: #777;
-            max-width: 650px;
-            margin: 0 auto 60px;
-            font-size: 16px;
-          "
-        >
-          Cinta kami tumbuh perlahan — dari tatap pertama hingga janji suci,
-          semuanya terasa seperti takdir yang lembut memeluk.
-        </p>
-
-        <div class="timeline">
-          <!-- 1️⃣ Pertemuan -->
-          <div class="timeline-item left fade-slide" data-aos="fade-up">
-            <div class="timeline-content">
-              <div class="timeline-icon">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/833/833472.png"
-                  alt="meet icon"
-                />
-              </div>
-              <h3>2019 — Pertemuan Pertama</h3>
-              <p>
-                Di antara keramaian, tatapan kami bertemu. Siapa sangka momen
-                singkat itu menjadi awal perjalanan cinta kami.
-              </p>
+      <div class="timeline">
+        <h2>Love Story</h2>
+        <div class="container left">
+          <div class="dot"></div>
+          <div class="content">
+            <div class="timeline-icon">
               <img
-                src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=60"
-                class="story-img"
-                alt="first meet"
+                src="https://cdn-icons-png.flaticon.com/512/833/833472.png"
+                alt="meet icon"
               />
             </div>
-          </div>
-
-          <!-- 2️⃣ Pendekatan -->
-          <div class="timeline-item right fade-slide" data-aos="fade-up">
-            <div class="timeline-content">
-              <div class="timeline-icon">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/3456/3456426.png"
-                  alt="journey icon"
-                />
-              </div>
-              <h3>2020 — Semakin Dekat</h3>
-              <p>
-                Kami mulai berbagi cerita, doa, dan mimpi. Tawa sederhana dan
-                perhatian kecil menjadi alasan untuk terus bertahan.
-              </p>
-              <img
-                src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=60"
-                class="story-img"
-                alt="growing love"
-              />
-            </div>
-          </div>
-
-          <!-- 3️⃣ Lamaran -->
-          <div class="timeline-item left fade-slide" data-aos="fade-up">
-            <div class="timeline-content">
-              <div class="timeline-icon">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/969/969501.png"
-                  alt="engagement icon"
-                />
-              </div>
-              <h3>2024 — Lamaran</h3>
-              <p>
-                Dengan restu orang tua, ia berlutut dengan mata berbinar. Janji
-                sederhana yang menandai babak baru hidup kami.
-              </p>
-              <img
-                src="https://images.unsplash.com/photo-1529634893832-3a6b7f5a4a21?auto=format&fit=crop&w=800&q=60"
-                class="story-img"
-                alt="engagement moment"
-              />
-            </div>
-          </div>
-
-          <!-- 4️⃣ Pernikahan -->
-          <div class="timeline-item right fade-slide" data-aos="fade-up">
-            <div class="timeline-content">
-              <div class="timeline-icon">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
-                  alt="wedding icon"
-                />
-              </div>
-              <h3>2026 — Hari Bahagia</h3>
-              <p>
-                Di hadapan keluarga dan sahabat, kami mengikat janji suci. Bukan
-                akhir cerita, melainkan awal dari selamanya.
-              </p>
-              <img
-                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=60"
-                class="story-img"
-                alt="wedding day"
-              />
-            </div>
+            <h3>2019 — Pertemuan Pertama</h3>
+            <p>
+              Di antara keramaian, tatapan kami bertemu. Siapa sangka momen
+              singkat itu menjadi awal perjalanan cinta kami.
+            </p>
+            <div class="timeline-img img1"></div>
           </div>
         </div>
-      </section>
+
+        <div class="container right">
+          <div class="dot"></div>
+          <div class="content">
+            <div class="timeline-icon">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3456/3456426.png"
+                alt="journey icon"
+              />
+            </div>
+            <h3>2020 — Semakin Dekat</h3>
+            <p>
+              Kami mulai berbagi cerita, doa, dan mimpi. Tawa sederhana dan
+              perhatian kecil menjadi alasan untuk terus bertahan.
+            </p>
+            <div class="timeline-img img2"></div>
+          </div>
+        </div>
+
+        <div class="container left">
+          <div class="dot"></div>
+          <div class="content">
+            <div class="timeline-icon">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/969/969501.png"
+                alt="engagement icon"
+              />
+            </div>
+            <h3>2024 — Lamaran</h3>
+            <p>
+              Dengan restu orang tua, ia berlutut dengan mata berbinar. Janji
+              sederhana yang menandai babak baru hidup kami.
+            </p>
+            <div class="timeline-img img3"></div>
+          </div>
+        </div>
+
+        <div class="container right">
+          <div class="dot"></div>
+          <div class="content">
+            <div class="timeline-icon">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+                alt="wedding icon"
+              />
+            </div>
+            <h3>2026 — Hari Bahagia</h3>
+            <p>
+              Di hadapan keluarga dan sahabat, kami mengikat janji suci. Bukan
+              akhir cerita, melainkan awal dari selamanya.
+            </p>
+            <div class="timeline-img img4"></div>
+          </div>
+        </div>
+      </div>
 
       <!-- Daftar Hadir -->
       <section id="attendance">
@@ -517,12 +415,7 @@
         </p>
 
         <!-- Tombol Gift -->
-        <button
-          id="giftBtn"
-          class="gift-icon"
-          title="Kirim Hadiah"
-          style="background-color: #a9bbc6"
-        >
+        <button id="giftBtn" class="gift-icon" title="Kirim Hadiah">
           <ion-icon name="gift-outline"></ion-icon>
           <span class="gift-label">Kirim Hadiah</span>
         </button>
@@ -595,11 +488,7 @@
       </section>
 
       <!-- Kehormatan Section -->
-      <section
-        id="honorSection"
-        class="section"
-        style="background: #ffffff; padding: 90px 20px"
-      >
+      <section id="honorSection" class="section" style="padding: 90px 20px">
         <div class="honor-content fade-slide" data-aos="fade-up">
           <h2 class="section-title" style="text-align: center">
             Kehormatan & Kebahagiaan
@@ -641,10 +530,7 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <!-- swiper js -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.0.5/swiper-bundle.min.js"
-      defer
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <!-- aos -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
@@ -732,21 +618,21 @@
         }
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
         );
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
         countdownElement.querySelector(".hari").innerText = String(
-          days
+          days,
         ).padStart(2, "0");
         countdownElement.querySelector(".jam").innerText = String(
-          hours
+          hours,
         ).padStart(2, "0");
         countdownElement.querySelector(".menit").innerText = String(
-          minutes
+          minutes,
         ).padStart(2, "0");
         countdownElement.querySelector(".detik").innerText = String(
-          seconds
+          seconds,
         ).padStart(2, "0");
       }, 1000);
 
@@ -858,21 +744,31 @@
         });
       });
       // Initialize swiper
-      window.addEventListener("load", () => {
-        new Swiper(".gallery-swiper", {
-          slidesPerView: 1,
-          spaceBetween: 20,
-          loop: true,
-          pagination: { el: ".swiper-pagination", clickable: true },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+      var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          dynamicBullets: true,
+        },
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
+        loop: true,
+        grabCursor: true,
+        effect: "creative",
+        creativeEffect: {
+          prev: {
+            shadow: true,
+            translate: [0, 0, -400],
           },
-          breakpoints: {
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+          next: {
+            translate: ["100%", 0, 0],
           },
-        });
+        },
       });
 
       // Gift Modal
@@ -996,7 +892,7 @@
 
         if (data) {
           const allMessages = Object.values(data).sort(
-            (a, b) => new Date(b.time) - new Date(a.time)
+            (a, b) => new Date(b.time) - new Date(a.time),
           ); // urut terbaru
 
           let showingAll = false; // status tampilan
